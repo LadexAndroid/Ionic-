@@ -1,0 +1,30 @@
+<!--
+  Generated template for the DetailsSaisonPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Liste des episodes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding style="background-color: rgb(158, 219, 255);opacity: 0.7;height:100%;padding-top:100% ;padding-bottom: 100%;">
+    <div *ngFor="let item of allepisodes" >
+     
+        <ion-card style="width:100%;height: 100%;text-align: center;margin:0 auto;margin-top: 2%;">
+            
+           <ion-card-content style="width:100%;height: 100%;text-align: center;margin:0 auto;background-color: rgb(54, 54, 54);">
+ 
+           <button  style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; "  [navPush]="detailsepisode" [navParams]="{Epi:item.Episode,data:item.imdbID,nbseason:TheSeason}">
+              {{item.Episode}}. {{item.Title}}
+           </button>
+           </ion-card-content>
+
+        </ion-card>
+    </div>
+
+</ion-content>

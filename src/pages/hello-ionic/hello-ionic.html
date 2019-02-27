@@ -1,25 +1,50 @@
+
+
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Hello Ionic</ion-title>
+    <ion-title>Films</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content  style="background-color: black;">
+    <video autoplay preload="auto" loop src="assets/video/backdesign.mp4"></video>
+  <button ion-button  (click)="downloadCSV()" style="margin:0 auto;width:100%;">Save it !</button>
 
-  <h3>Welcome to your first Ionic app!</h3>
+  <div style="margin:0 auto;">
+    <ion-row  >
+       <ion-toolbar color="dark">
+          <ion-searchbar [(ngModel)]="MovieTitle" (ionInput)="CallOmdb(MovieTitle)" color="dark"></ion-searchbar>
 
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p>
-    <button ion-button color="primary" menuToggle>Toggle Menu</button>
-  </p>
+       </ion-toolbar>
+     
+  </ion-row>
+    
 
+   
+  </div>
+  <ion-list>
+      <ion-card *ngFor="let item of items" style="margin:0 auto;background-color: black;">
+          <ion-card-content style="width: 90%;text-align: center;margin:0 auto;">
+
+              
+                  <img style="width: 300px;height: 450px;text-align: center;" src={{item.Poster}}  [navPush]="detailspage" [navParams]="{data:item.imdbID}" >
+                  
+                
+          </ion-card-content>
+     
+       </ion-card>
+  </ion-list>
+      
+ 
+     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+
+        </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    
 </ion-content>

@@ -1,3 +1,45 @@
 page-hello-ionic {
-
+img{
+    
+    transition: 0.25s ease-in-out;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+img:hover{
+    opacity: 1;
+}
+.SearchMovie{
+    background: grey;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+   font-size: 50px;
+}
+.RMovie{
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    height: 90px;
+   font-size: 50px;
+  background-image:  linear-gradient(to right, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%);
+    margin-bottom:5px;
+}
+.RMovie:hover{
+    opacity: 1;
+    background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 51%, #2BC0E4 100%);
+}
+ 
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width:180%;
+    height: 100%;
+    z-index: -100;
+    transform:  translateX(-50%) translateY(-50%)  rotate(90deg);
+}
 }

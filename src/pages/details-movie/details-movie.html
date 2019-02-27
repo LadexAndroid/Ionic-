@@ -1,0 +1,109 @@
+<!--
+  Generated template for the DetailsMoviePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>DetailsMovie</ion-title>
+  </ion-navbar>
+
+
+  <button ion-button (click)="ViewTrailer()" style="width:100%;background-color: cadetblue;">View trailer</button>
+<ion-content padding style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
+  
+    
+     <ion-grid >
+        
+            <ion-row>
+              <ion-col style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0) ;width:100%;font-weight:bold;margin: 0;">
+                  {{items.Title}}
+              </ion-col>
+              <ion-col>
+                  <img src={{items.Poster}}    >
+              </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                
+                <ion-col>
+                    <ion-card style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0.829) ;width:100%;font-weight:bold;margin: 0;"> 
+                        {{items.Released}}
+                      </ion-card>
+                </ion-col>
+              </ion-row>
+            
+       
+     
+    
+     </ion-grid>
+       
+         
+           
+           
+              <!--
+            {{item.Runtime}} 
+            {{item.Genre}} 
+            {{item.Director}} 
+            {{item.Writer}}
+            {{item.Actors}}
+            {{item.Plot}}
+            {{item.Language}}
+            {{item.Country}}
+            {{item.Awards}} 
+            {{item.Metascore}} 
+            {{item.imdbRating}} 
+            {{item.imdbVotes}} 
+            {{item.Type}} 
+            {{item.DVD}} 
+            {{item.BoxOffice}} 
+            {{item.Production}} 
+            {{item.Website}}
+           
+          
+              
+      
+        
+            
+       
+        Iterate the students -->
+             
+          
+     
+              <!--
+                <ion-card-header  style="color: coral;">
+                 
+                  {{item.Title}}
+            
+                  </ion-card-header>
+              
+                  
+                 <li>{{item.Year}}
+                  {{item.Rated}} 
+                  {{item.Released}} 
+                  <img src={{item.Poster}}    >
+                  {{item.Runtime}} 
+               
+                  {{item.Genre}} 
+               {{item.Director}} 
+                  {{item.Writer}}
+                   {{item.Actors}}
+                 {{item.Plot}}
+                 {{item.Language}}
+                 {{item.Country}}
+                 {{item.Awards}} 
+                   {{item.Metascore}} 
+                  {{item.imdbRating}} 
+                   {{item.imdbVotes}} 
+                  {{item.Type}} 
+                   {{item.DVD}} 
+                     {{item.BoxOffice}} 
+                    {{item.Production}} 
+                   {{item.Website}}
+              --> 
+       
+      
+      
+</ion-content>

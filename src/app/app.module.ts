@@ -1,3 +1,4 @@
+import { FavorisPage } from './../pages/favoris/favoris';
 import { DetailsSeriePage } from './../pages/details-serie/details-serie';
 import { SeriePage } from './../pages/serie/serie';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +17,10 @@ import { OmdbProvider } from '../providers/omdb/omdb';
 import { DetailsMoviePage } from '../pages/details-movie/details-movie';
 import { DetailsEpisodePage } from '../pages/details-episode/details-episode';
 import { DetailsSaisonPage } from '../pages/details-saison/details-saison';
+import { FavoriteProvider } from '../providers/favorite/favorite';
+import { IonicStorageModule } from '@ionic/storage';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,12 +31,14 @@ import { DetailsSaisonPage } from '../pages/details-saison/details-saison';
     SeriePage,
     DetailsSeriePage,
     DetailsEpisodePage,
-    DetailsSaisonPage
+    DetailsSaisonPage,
+    FavorisPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,13 +50,15 @@ import { DetailsSaisonPage } from '../pages/details-saison/details-saison';
     SeriePage,
     DetailsSeriePage,
     DetailsEpisodePage,
-    DetailsSaisonPage
+    DetailsSaisonPage,
+    FavorisPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    OmdbProvider
+    OmdbProvider,
+    FavoriteProvider
   ]
 })
 export class AppModule {}

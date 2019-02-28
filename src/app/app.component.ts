@@ -1,3 +1,4 @@
+import { FavorisPage } from './../pages/favoris/favoris';
 import { SeriePage } from './../pages/serie/serie';
 import { Component, ViewChild } from '@angular/core';
 
@@ -17,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   hellopage:any = HelloIonicPage;
   SeriePage:any = SeriePage;
+  FavorisPage:any = FavorisPage;
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
@@ -36,7 +38,7 @@ export class MyApp {
     this.pages = [
       { title: 'Films', component: HelloIonicPage },
       { title: 'Series', component: SeriePage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Favoris', component: FavorisPage }
     ];
   }
 

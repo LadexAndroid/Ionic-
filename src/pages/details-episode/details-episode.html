@@ -13,34 +13,24 @@
 </ion-header>
 
 
-<ion-content padding style="background-color: rgb(158, 219, 255);opacity: 0.7;height:100%;padding-top:100% ;padding-bottom: 100%;">
-  <div *ngFor="let item of TheEpisode" >
-   
-      <ion-card style="width:100%;height: 100%;text-align: center;margin:0 auto;margin-top: 2%;">
-          
-         <ion-card-content style="width:100%;height: 100%;text-align: center;margin:0 auto;background-color: rgb(54, 54, 54);">
-          <ion-card-header style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">
-            {{item.Title}}
-          </ion-card-header>
-          <p>
-            <img  src={{item.Poster}}>
-           </p>
-          
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Year}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Rated}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Released}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Season}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Episode}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Runtime}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Genre}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Director}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Writer}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Actors}}</p>
-          <p style="width:100%;height: 100%;margin:0 auto;font-size: 100%;background-color: rgb(54, 54, 54);color: coral;font-weight: bold; ">{{item.Plot}}</p>
-         
-         </ion-card-content>
-
-      </ion-card>
-  </div>
-
-</ion-content>
+<ion-content padding style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
+    <ion-grid>
+      <ion-row>
+        <ion-title
+          style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0) ;width:100%;font-weight:bold;margin: 0;">
+          {{items.Title}}
+        </ion-title>
+        <ion-col>
+          <img src={{items.Poster}}>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card
+            style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0.829) ;width:100%;font-weight:bold;margin: 0;">
+            {{items.Released}}
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

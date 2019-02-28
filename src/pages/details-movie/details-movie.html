@@ -12,98 +12,30 @@
 
 
   <button ion-button (click)="ViewTrailer()" style="width:100%;background-color: cadetblue;">View trailer</button>
-<ion-content padding style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
-  
-    
-     <ion-grid >
-        
-            <ion-row>
-              <ion-col style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0) ;width:100%;font-weight:bold;margin: 0;">
-                  {{items.Title}}
-              </ion-col>
-              <ion-col>
-                  <img src={{items.Poster}}    >
-              </ion-col>
-               
-            </ion-row>
-            <ion-row>
-                
-                <ion-col>
-                    <ion-card style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0.829) ;width:100%;font-weight:bold;margin: 0;"> 
-                        {{items.Released}}
-                      </ion-card>
-                </ion-col>
-              </ion-row>
-            
-       
-     
-    
-     </ion-grid>
-       
-         
-           
-           
-              <!--
-            {{item.Runtime}} 
-            {{item.Genre}} 
-            {{item.Director}} 
-            {{item.Writer}}
-            {{item.Actors}}
-            {{item.Plot}}
-            {{item.Language}}
-            {{item.Country}}
-            {{item.Awards}} 
-            {{item.Metascore}} 
-            {{item.imdbRating}} 
-            {{item.imdbVotes}} 
-            {{item.Type}} 
-            {{item.DVD}} 
-            {{item.BoxOffice}} 
-            {{item.Production}} 
-            {{item.Website}}
-           
-          
-              
-      
-        
-            
-       
-        Iterate the students -->
-             
-          
-     
-              <!--
-                <ion-card-header  style="color: coral;">
-                 
-                  {{item.Title}}
-            
-                  </ion-card-header>
-              
-                  
-                 <li>{{item.Year}}
-                  {{item.Rated}} 
-                  {{item.Released}} 
-                  <img src={{item.Poster}}    >
-                  {{item.Runtime}} 
-               
-                  {{item.Genre}} 
-               {{item.Director}} 
-                  {{item.Writer}}
-                   {{item.Actors}}
-                 {{item.Plot}}
-                 {{item.Language}}
-                 {{item.Country}}
-                 {{item.Awards}} 
-                   {{item.Metascore}} 
-                  {{item.imdbRating}} 
-                   {{item.imdbVotes}} 
-                  {{item.Type}} 
-                   {{item.DVD}} 
-                     {{item.BoxOffice}} 
-                    {{item.Production}} 
-                   {{item.Website}}
-              --> 
-       
-      
-      
-</ion-content>
+  <ion-content padding style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
+    <ion-grid>
+      <ion-row>
+        <ion-title
+          style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0) ;width:100%;font-weight:bold;margin: 0;">
+          {{items.Title}}
+          <button ion-button icon-only (click)="unfavoriteFilm()" *ngIf="isFavorite">
+            <ion-icon name="star"></ion-icon>
+          </button>
+          <button ion-button icon-only (click)="favoriteFilm()" *ngIf="!isFavorite">
+            <ion-icon name="star-outline"></ion-icon>
+          </button>
+        </ion-title>
+        <ion-col>
+          <img src={{items.Poster}}>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card
+            style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0.829) ;width:100%;font-weight:bold;margin: 0;">
+            {{items.Released}}
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

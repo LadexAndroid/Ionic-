@@ -22,41 +22,19 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DetailsEpisodePage {
 
-  public items:any;
-  public TheEpisode:any;
-
+  public items: any; 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    this.items = new Observable<any>();
     this.findMovie();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsEpisodePage');
   }
-  findMovie () {
-    console.log("YOYO"+'http://www.omdbapi.com/?apikey=75522b56&i='+this.navParams.get('data'));
-    //alert('http://www.omdbapi.com/?apikey=75522b56&i='+this.navParams.get('data')+this.navParams.get('data2'));
- 
-
-    //alert('http://www.omdbapi.com/?apikey=75522b56&i='+this.navParams.get('data')+"&Season="+this.navParams.get('nbseason'));
-    let data : Observable<any> = this.http.get('http://www.omdbapi.com/?apikey=75522b56&i='+this.navParams.get('data'));
+  findMovie() {
+    let data: Observable<any> = this.http.get('http://www.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data'));
     data.subscribe(result => {
-   
-    let arr = [];
-  
-    for(let k in result) {
-      
-      arr.push({[k] : result[k]});
-   
-    } 
-   //console.log("theresult: "+result.totalSeasons);
-
-    this.TheEpisode = arr;
-    console.log("TheEpisode : "+JSON.stringify(this.TheEpisode) );
+      this.items = result;
     });
-
-
-   // alert(this.allseasons);
-    
-
-    }
+  }
 }

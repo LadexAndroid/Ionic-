@@ -1,12 +1,14 @@
 import { DetailsSeriePage } from './../details-serie/details-serie';
 import { DetailsMoviePage } from './../details-movie/details-movie';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import { findLinkByComponentData } from 'ionic-angular/umd/navigation/url-serializer';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
+
+
 /**
  * Generated class for the SeriePage page.
  *
@@ -26,8 +28,9 @@ export class SeriePage {
   public MovieTitle: any;
   public firsty: number = 0;
   public secondly: number = 20;
-
-  constructor(public navCtrl: NavController, private http: HttpClient) {
+ 
+  constructor(public navCtrl: NavController,public navParams: NavParams, private http: HttpClient,  ) {
+   
   }
 
   ionViewDidLoad() {
@@ -60,4 +63,6 @@ export class SeriePage {
     });
 
   }
+
+
 }

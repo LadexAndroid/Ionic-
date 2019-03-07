@@ -15,13 +15,22 @@
   <ion-content padding style="background-color: rgb(181, 244, 255);opacity: 0.7;height:100%;padding-top:100% ; padding-bottom: 100%;margin:0 auto;">
       <div *ngFor="let item of allseasons" >
        
-          <ion-card style="width:100%;height: 100%;margin:0 auto;margin-top: 2%;">
-              
+          <ion-card style="width:100%;height: 100%;margin:0 auto;margin-top: 2%;background-color: transparent;">
+            <div style="background-color: transparent;margin-left: 85%;">
+              <button ion-button icon-only (click)="unfavoriteFilm()" *ngIf="isFavorite">
+                <ion-icon name="star"></ion-icon>
+              </button>
+              <button ion-button icon-only (click)="favoriteFilm()" *ngIf="!isFavorite">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+            </div>
+    
              <ion-card-content style="margin:0 auto;background-color: rgb(54, 54, 54);">
    
              <button style="width:100%;height: 100%;margin:0 auto;background-color: rgb(54, 54, 54);color: coral;font-weight: bold;" [navPush]="detailsSeason" [navParams]="{data:idserie,nbseason:item}">
                saison  {{item}}
              </button>
+             
              </ion-card-content>
 
           </ion-card>

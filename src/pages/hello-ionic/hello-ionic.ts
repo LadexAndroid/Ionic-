@@ -19,6 +19,7 @@ export class HelloIonicPage {
   public secondly: number = 20;
   csvData: any[] = [];
   headerRow: any[] = [];
+  
   constructor(private NavCtrl : NavController, private http: HttpClient ) {
      
     }

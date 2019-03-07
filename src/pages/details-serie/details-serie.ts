@@ -7,6 +7,8 @@ import * as $ from 'jquery';
 import { findLinkByComponentData } from 'ionic-angular/umd/navigation/url-serializer';
 import { Observable } from 'rxjs/Observable';
 import { DetailsSaisonPage } from '../details-saison/details-saison';
+import { FavoriteProvider } from './../../providers/favorite/favorite';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the DetailsSeriePage page.
@@ -26,9 +28,13 @@ export class DetailsSeriePage {
   public idserie : any;
   public items:any;
   public allseasons:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient ) {
+  isFavorite = false; 
+  favoriss: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient,public favoriteservice: FavoriteProvider, public listfavs: Storage ) {
    // alert(this.navParams.get('data'));
     this.findMovie();
+    this.favoriteservice.isFavorite(this.navParams.get('data')).then(isFav => {
+      this.isFavorite = isFav; })
 
   }
 
@@ -59,7 +65,17 @@ export class DetailsSeriePage {
     
 
     }
-    
+    favoriteFilm() {
+      this.favoriteservice.favoriteFilm(this.navParams.get('data')).then(() => {
+        this.isFavorite = true;
+      });
+    }
+  
+    unfavoriteFilm() {
+      this.favoriteservice.unfavoriteFilm(this.navParams.get('data')).then(() => {
+        this.isFavorite = false;
+      });
+    }
     GetSeasonDetails(nbseason){
 
     // alert('http://www.omdbapi.com/?apikey=75522b56&i='+this.navParams.get('data')+"&Season="+nbseason) ;

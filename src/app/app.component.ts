@@ -9,29 +9,42 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  hellopage:any = HelloIonicPage;
-  SeriePage:any = SeriePage;
-  FavorisPage:any = FavorisPage;
+  hellopage: any = HelloIonicPage;
+  SeriePage: any = SeriePage;
+  FavorisPage: any = FavorisPage;
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
   alertCtrl: any;
 
-  constructor(
+  constructor(private androidPermissions: AndroidPermissions,
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen
   ) {
+    platform.ready().then(() => {
+
+      androidPermissions.requestPermissions(
+        [
+          androidPermissions.PERMISSION.CAMERA,
+          androidPermissions.PERMISSION.CALL_PHONE,
+          androidPermissions.PERMISSION.GET_ACCOUNTS,
+          androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
+          androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
+        ]
+      );
+
+    })
     this.initializeApp();
 
     // set our app's pages
@@ -48,6 +61,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
     });
   }
 
@@ -57,9 +71,9 @@ export class MyApp {
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
-   salutation(){
+  salutation() {
 
-   alert("yoyo");
+    alert("yoyo");
   }
 
 }

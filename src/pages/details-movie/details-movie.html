@@ -12,7 +12,9 @@
 
 
   <button ion-button (click)="ViewTrailer()" style="width:100%;background-color: cadetblue;">View trailer</button>
+  <button ion-button (click)="download()" style="width:100%;background-color: rgb(113, 160, 95);">Download</button>
   <ion-content padding style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
+ 
     <ion-grid>
       <ion-row>
         <ion-title
@@ -26,7 +28,8 @@
           </button>
         </ion-title>
         <ion-col>
-          <img src={{items.Poster}}>
+            <img [src]=imageUrl >
+          <!--<img src={{items.Poster}}>-->
         </ion-col>
       </ion-row>
       <ion-row>

@@ -38,35 +38,7 @@ export class HelloIonicPage {
   trackByFn(index: any, item: any) {
     return index;
   }
-  downloadCSV() {
-    var teams:any;
-    teams=this.items;
-    var csv: any = ''
-    var line: any = ''
-
-    var SpT = teams.length;
-    
-    
-    //Teams
-    for (var i = 0; i < SpT; i++) {
-      
-       
-          line += teams[i].Title + '\r\n';
-          console.log("COMPLETE : "+ teams[i].Title);
-        
-      
-     
-    }
-    csv =line;
-    // Dummy implementation for Desktop download purpose
-    var blob = new Blob([csv]);
-    var a = window.document.createElement("a");
-    a.href = window.URL.createObjectURL(blob);
-    a.download = "newdata.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
+  
    extractData(res) {
     let csvData = res['_body'] || '';
     

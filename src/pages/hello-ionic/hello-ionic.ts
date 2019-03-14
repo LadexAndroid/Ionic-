@@ -25,7 +25,7 @@ export class HelloIonicPage {
     }
   //////////////////////////
   private readCsvData() {
-    this.http.get('assets/dummuData.csv')
+    this.http.get('assets/ListeDeFavoris.csv')
       .subscribe(
       data => this.extractData(this.items),
       err => this.handleError(err)

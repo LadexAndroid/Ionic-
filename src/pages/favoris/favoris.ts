@@ -13,6 +13,9 @@ import { Storage } from '@ionic/storage';
 import { DomSanitizer } from '@angular/platform-browser';
 import { File } from '@ionic-native/file';
 import { Downloader } from '@ionic-native/downloader/ngx';
+import * as papa from 'papaparse';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 /**
  * Generated class for the FavorisPage page.
@@ -28,8 +31,9 @@ import { Downloader } from '@ionic-native/downloader/ngx';
 })
 export class FavorisPage {
   items: any;
+  itemsforexport : any ;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public favoriteservice: FavoriteProvider, public listfavs: Storage,
-    private file : File, private transfert : FileTransfer) {
+    private file : File, private transfert : FileTransfer,private socialSharing: SocialSharing) {
     this.findListOfFavs();
   }
 
@@ -38,67 +42,60 @@ export class FavorisPage {
   }
   findListOfFavs() {
     let arr = [];
+    let arrforexport= [];
     this.listfavs.get('favoriteFilms').then(data => {
       data.forEach(element => {
+        arrforexport.push(element);
         let donns: Observable<any> = this.http.get('http://www.omdbapi.com/?apikey=75522b56&i=' + element);
         donns.subscribe(result => {
           arr.push(result);
         });
       });
       this.items = arr;
+      this.itemsforexport = arrforexport;
     });
   }
-
+  
   downloadCSV() {
-    var teams:any;
-    teams=this.items;
-    var csv: any = ''
-    var line: any = ''
-
-    var SpT = teams.length;
+   /* let arr =[];
+    this.listfavs.get('favoriteFilms').then(data => {
+      data.forEach(element => {
+         arr.push(element);
+      });
+      //this.items = arr;
+    });*/
     
-    
-    //Teams
-    for (var i = 0; i < SpT; i++) {
-      
-       
-          line += teams[i].Title + '\r\n';
-          console.log("COMPLETE : "+ teams[i].Title);
-        
-      
-     
-    }
-    csv =line;
-    // Dummy implementation for Desktop download purpose
-    var blob = new Blob([csv]);
-    this.file.writeFile(this.file.applicationDirectory,  "ListeDeFavoris.csv", blob)
-    .then(
-    _ => {
-      alert('Success ;-)'+this.file.applicationDirectory)
-    }
-    )
-    .catch(
-    err => {
+      let thepath = 'TempIonicFolder';
+      let thecsvfile = 'ListeDeFavoris.csv';
+     // nom fichier nom chemin
+     this.file.createDir(this.file.externalRootDirectory, thepath ,true).then(url=>{
 
-      this.file.writeExistingFile(this.file.applicationDirectory,  "ListeDeFavoris.csv", blob)
-        .then(
-        _ => {
-          alert('Success ;-)2'+this.file.applicationDirectory)
-        }
-        )
-        .catch(
-        err => {
-          alert(err+'Failure'+this.file.applicationDirectory)
-        }
-        )
+      this.file.writeFile(url.toURL(),thecsvfile,JSON.stringify(this.itemsforexport),{replace:true}).then(file=>{
+       let rootfolder = this.file.externalRootDirectory;
+        this.socialSharing.share('','',rootfolder+'/'+thepath+'/'+thecsvfile,'');
+      })
+     })
+   
     }
-    )
- 
-  /*  var a = window.document.createElement("a");
-    a.href = window.URL.createObjectURL(blob);
-    a.download = "ListeDeFavoris.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);*/
-  }
+
+    downloadjson(){
+
+      let thepath = 'TempIonicFolder';
+      let thejsonfile = 'ListeDeFavoris.json';
+     // nom fichier nom chemin
+     this.file.createDir(this.file.externalRootDirectory, thepath ,true).then(url=>{
+
+      this.file.writeFile(url.toURL(),thejsonfile,JSON.stringify(this.itemsforexport),{replace:true}).then(file=>{
+       let rootfolder = this.file.externalRootDirectory;
+        this.socialSharing.share('','',rootfolder+'/'+thepath+'/'+thejsonfile,'');
+      })
+     })
+    }
+
+
+    importList () {
+
+      
+    }
+  
 }

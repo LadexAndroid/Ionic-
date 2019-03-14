@@ -22,7 +22,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Downloader } from '@ionic-native/downloader/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { FileChooser } from '@ionic-native/file-chooser';
 @NgModule({
   declarations: [
     MyApp,
@@ -65,7 +66,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     File,
     Downloader,
     AndroidPermissions,
-    InAppBrowser
+    InAppBrowser,
+    SocialSharing
   ]
 })
 export class AppModule {}

@@ -13,24 +13,49 @@
 </ion-header>
 
 
-<ion-content padding style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
-    <ion-grid>
-      <ion-row>
-        <ion-title
-          style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0) ;width:100%;font-weight:bold;margin: 0;">
-          {{items.Title}}
-        </ion-title>
-        <ion-col>
-          <img src={{items.Poster}}>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-card
-            style="color:rgb(255, 190, 166); background-color:  rgba(102, 102, 102, 0.829) ;width:100%;font-weight:bold;margin: 0;">
-            {{items.Released}}
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+<ion-content padding
+  style="height:100%;padding-top:100% ;padding-bottom: 100%;width: 100%;background-color: rgba(61, 61, 61, 0.829) ;">
+  <ion-grid>
+    <ion-row>
+      <ion-title
+        style="color:rgb(255, 190, 166); background-color:  rgb(255, 255, 255) ;width:100%;font-weight:bold;margin: 0;width:100%;">
+        {{items.Title}}
+      </ion-title>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="cardetail">
+          Date : {{items.Released}}
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="cardetail">
+          Durée : {{items.Runtime}}
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="cardetail">
+          Description : {{items.Plot}}
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="cardetail">
+          Note imdb : {{items.imdbRating}}
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="cardetail">
+          Nombre de votes imdb : {{items.imdbVotes}}
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

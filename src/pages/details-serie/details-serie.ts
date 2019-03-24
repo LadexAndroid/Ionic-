@@ -98,7 +98,7 @@ export class DetailsSeriePage {
     }
     download() {
 
-      const url = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data');
+      const url = this.navParams.get('img');
   
       // console.log('http://img.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data'));
   

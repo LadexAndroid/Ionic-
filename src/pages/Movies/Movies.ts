@@ -1,5 +1,5 @@
 
-import { DetailsMoviePage } from './../details-movie/details-movie';
+import { DetailsMoviePage } from '../details-movie/details-movie';
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {NavController} from 'ionic-angular';
@@ -7,11 +7,13 @@ import * as $ from 'jquery';
 import { findLinkByComponentData } from 'ionic-angular/umd/navigation/url-serializer';
 import { Observable } from 'rxjs/Observable';
 import * as papa from 'papaparse';
+
+
 @Component({
-  selector: 'page-hello-ionic',
-  templateUrl: 'hello-ionic.html'
+  selector: 'page-Movies',
+  templateUrl: 'Movies.html'
 })
-export class HelloIonicPage {
+export class MoviesPage {
   detailspage:any = DetailsMoviePage;
   public items:any;
   public MovieTitle:any

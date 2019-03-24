@@ -15,7 +15,9 @@ import { File } from '@ionic-native/file';
 import { Downloader } from '@ionic-native/downloader/ngx';
 import * as papa from 'papaparse';
 import { SocialSharing } from '@ionic-native/social-sharing';
-
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+import { promises } from 'fs';
 
 /**
  * Generated class for the FavorisPage page.
@@ -23,6 +25,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+const STORAGE_KEY = 'favoriteFilms';
 
 @IonicPage()
 @Component({
@@ -31,9 +34,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class FavorisPage {
   items: any;
-  itemsforexport : any ;
+  itemsforexport: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public favoriteservice: FavoriteProvider, public listfavs: Storage,
-    private file : File, private transfert : FileTransfer,private socialSharing: SocialSharing) {
+    private file: File, private transfert: FileTransfer, private socialSharing: SocialSharing, private fileChooser: FileChooser, private filePath: FilePath) {
     this.findListOfFavs();
   }
 
@@ -42,7 +45,7 @@ export class FavorisPage {
   }
   findListOfFavs() {
     let arr = [];
-    let arrforexport= [];
+    let arrforexport = [];
     this.listfavs.get('favoriteFilms').then(data => {
       data.forEach(element => {
         arrforexport.push(element);
@@ -55,47 +58,78 @@ export class FavorisPage {
       this.itemsforexport = arrforexport;
     });
   }
-  
+
   downloadCSV() {
-   /* let arr =[];
-    this.listfavs.get('favoriteFilms').then(data => {
-      data.forEach(element => {
-         arr.push(element);
+
+    let thepath = 'TempIonicFolder';
+    let thecsvfile = 'ListeDeFavoris.csv';
+    this.file.createDir(this.file.externalRootDirectory, thepath, true).then(url => {
+
+      this.file.writeFile(url.toURL(), thecsvfile, JSON.stringify(this.itemsforexport), { replace: true }).then(file => {
+        let rootfolder = this.file.externalRootDirectory;
+        this.socialSharing.share('', '', rootfolder + '/' + thepath + '/' + thecsvfile, '');
+      })
+    })
+
+  }
+
+  downloadjson() {
+
+    let thepath = 'TempIonicFolder';
+    let thejsonfile = 'ListeDeFavoris.json';
+    this.file.createDir(this.file.externalRootDirectory, thepath, true).then(url => {
+
+      this.file.writeFile(url.toURL(), thejsonfile, JSON.stringify(this.itemsforexport), { replace: true }).then(file => {
+        let rootfolder = this.file.externalRootDirectory;
+        this.socialSharing.share('', '', rootfolder + '/' + thepath + '/' + thejsonfile, '');
+      })
+    })
+  }
+
+
+  importList() {
+
+
+    this.fileChooser.open().then(file => {
+      this.filePath.resolveNativePath(file).then(resolvedFilePath => {
+
+        let path = resolvedFilePath.substring(0, resolvedFilePath.lastIndexOf('/'));
+        let file = resolvedFilePath.substring(resolvedFilePath.lastIndexOf('/') + 1, resolvedFilePath.length);
+        this.Importfavoris(path, file)
+
+      }).catch(err => {
+        alert(JSON.stringify(err));
       });
-      //this.items = arr;
-    });*/
-    
-      let thepath = 'TempIonicFolder';
-      let thecsvfile = 'ListeDeFavoris.csv';
-     // nom fichier nom chemin
-     this.file.createDir(this.file.externalRootDirectory, thepath ,true).then(url=>{
 
-      this.file.writeFile(url.toURL(),thecsvfile,JSON.stringify(this.itemsforexport),{replace:true}).then(file=>{
-       let rootfolder = this.file.externalRootDirectory;
-        this.socialSharing.share('','',rootfolder+'/'+thepath+'/'+thecsvfile,'');
+    }).catch(err => {
+      alert(JSON.stringify(err));
+    });
+  }
+
+  Importfavoris(path, file) {
+
+    this.file.readAsBinaryString(path, file)
+      .then(content => {
+        const result = content.substring(1, content.length - 1);
+        const words = result.split(",");
+        let Promises = [];
+        words.forEach(element => {
+          alert(element);
+          var idofmovie = element.toString().replace(/"/g, "");
+          Promises.push(this.favoriteservice.favoriteFilm(idofmovie));
+        });  
+        setTimeout(() => {
+          let promise = Promise.all(Promises);
+          promise.then(data => {
+            alert("All done" + data);
+          });
+        }, 3000);
       })
-     })
-   
-    }
+      .catch(err => {
+        alert(err);
+        alert(JSON.stringify(err));
+      });
 
-    downloadjson(){
-
-      let thepath = 'TempIonicFolder';
-      let thejsonfile = 'ListeDeFavoris.json';
-     // nom fichier nom chemin
-     this.file.createDir(this.file.externalRootDirectory, thepath ,true).then(url=>{
-
-      this.file.writeFile(url.toURL(),thejsonfile,JSON.stringify(this.itemsforexport),{replace:true}).then(file=>{
-       let rootfolder = this.file.externalRootDirectory;
-        this.socialSharing.share('','',rootfolder+'/'+thepath+'/'+thejsonfile,'');
-      })
-     })
-    }
-
-
-    importList () {
-
-      
-    }
-  
+    this.findListOfFavs();
+  }
 }

@@ -23,7 +23,7 @@
     <ion-card *ngFor="let item of items" style="margin:0 auto;">
       <ion-card-content style="width: 90%;text-align: center;margin:0 auto;">
         <img style="width: 300px;height: 450px;text-align: center;" src={{item.Poster}} [navPush]="detailspage"
-          [navParams]="{data:item.imdbID,nameofmovie:item.Title}">
+          [navParams]="{data:item.imdbID,nameofmovie:item.Title,img:item.Poster}">
       </ion-card-content>
     </ion-card>
   </ion-list>

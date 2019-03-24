@@ -1,3 +1,4 @@
+import { MoviesPage } from './../pages/Movies/Movies';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FavorisPage } from './../pages/favoris/favoris';
@@ -8,7 +9,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,10 +24,11 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
+    MoviesPage,
     ItemDetailsPage,
     ListPage,
     DetailsMoviePage,
@@ -46,7 +47,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
+    MoviesPage,
     ItemDetailsPage,
     ListPage,
     DetailsMoviePage,
@@ -67,7 +68,9 @@ import { FileChooser } from '@ionic-native/file-chooser';
     Downloader,
     AndroidPermissions,
     InAppBrowser,
-    SocialSharing
+    SocialSharing,
+    FileChooser,
+    FilePath
   ]
 })
 export class AppModule {}

@@ -15,7 +15,7 @@ const STORAGE_KEY = 'favoriteFilms';
 export class FavoriteProvider {
 
   constructor(public http: HttpClient,public storage: Storage) {
-    console.log('Hello FavoriteProvider Provider');
+     
   }
 
   public isFavorite(filmId) {

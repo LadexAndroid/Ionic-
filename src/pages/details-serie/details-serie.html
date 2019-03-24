@@ -12,21 +12,33 @@
   
   
   
-    <button ion-button (click)="ViewTrailer()" style="width:100%;background-color: cadetblue;">View trailer</button>
-    <button ion-button (click)="download()" style="width:100%;background-color: rgb(113, 160, 95);">Download</button>
-  <ion-content padding style="background-color: rgb(181, 244, 255);opacity: 0.7;height:100%;padding-top:100% ; padding-bottom: 100%;margin:0 auto;">
-      <img [src]=imageUrl >
+    <ion-content padding style="background-color: rgb(68, 68, 68);height:100%;padding-top:100% ; padding-bottom: 100%;margin:0 auto;">
+     <ion-grid>
+       <ion-row>
+         <ion-col>
+            <img [src]=imageUrl >
+         </ion-col>
+         <ion-col>
+            <button ion-button (click)="ViewTrailer()" style="width:100%;background-color: rgba(139, 167, 168, 0.589);">Visionner le trailer</button>
+            <button ion-button (click)="download()" style="width:100%;background-color: rgba(113, 160, 95, 0.63);">Télécharger le poster</button>
+            <div style="background-color: transparent;padding-left: 35%;">
+                <button ion-button icon-only (click)="unfavoriteFilm()" *ngIf="isFavorite">
+                  <ion-icon name="star"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="favoriteFilm()" *ngIf="!isFavorite">
+                  <ion-icon name="star-outline"></ion-icon>
+                </button>
+              </div>
+         </ion-col>
+       </ion-row>
+     </ion-grid>
+    
+
+  
       <div *ngFor="let item of allseasons" >
        
           <ion-card style="width:100%;height: 100%;margin:0 auto;margin-top: 2%;background-color: transparent;">
-            <div style="background-color: transparent;margin-left: 85%;">
-              <button ion-button icon-only (click)="unfavoriteFilm()" *ngIf="isFavorite">
-                <ion-icon name="star"></ion-icon>
-              </button>
-              <button ion-button icon-only (click)="favoriteFilm()" *ngIf="!isFavorite">
-                <ion-icon name="star-outline"></ion-icon>
-              </button>
-            </div>
+        
     
              <ion-card-content style="margin:0 auto;background-color: rgb(54, 54, 54);">
    

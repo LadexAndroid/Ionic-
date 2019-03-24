@@ -71,8 +71,7 @@ export class DetailsMoviePage {
   }
 
   findMovie() {
-
-    this.imageUrl = this.sanitizer.bypassSecurityTrustUrl('http://img.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data'));
+     this.imageUrl = this.sanitizer.bypassSecurityTrustUrl('http://img.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data'));
     let data: Observable<any> = this.http.get('http://www.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data'));
     data.subscribe(result => {
       this.items = result;
@@ -92,7 +91,7 @@ export class DetailsMoviePage {
   }
   download() {
 
-    const url = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data');
+    const url = this.navParams.get('img');
 
     // console.log('http://img.omdbapi.com/?apikey=75522b56&i=' + this.navParams.get('data'));
 

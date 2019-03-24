@@ -1,28 +1,25 @@
 import { FavorisPage } from './../pages/favoris/favoris';
 import { SeriePage } from './../pages/serie/serie';
 import { Component, ViewChild } from '@angular/core';
-
 import { Platform, MenuController, Nav } from 'ionic-angular';
-
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { MoviesPage } from '../pages/Movies/Movies';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  hellopage: any = HelloIonicPage;
+  hellopage: any = MoviesPage;
   SeriePage: any = SeriePage;
   FavorisPage: any = FavorisPage;
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  rootPage = MoviesPage;
   pages: Array<{ title: string, component: any }>;
   alertCtrl: any;
 
@@ -49,7 +46,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Films', component: HelloIonicPage },
+      { title: 'Films', component: MoviesPage },
       { title: 'Series', component: SeriePage },
       { title: 'Favoris', component: FavorisPage }
     ];
